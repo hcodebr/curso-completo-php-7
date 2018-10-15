@@ -1,0 +1,37 @@
+<form method="post" action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
+          
+        <!-- Campos obrigatórios -->  
+        <input name="receiverEmail" type="hidden" value="pagseguro@html5dev.com.br">  
+        <input name="currency" type="hidden" value="BRL">  
+        
+        {loop="$products"} 
+        <input name="itemId{$counter+1}" type="hidden" value="{$value.idproduct}">  
+        <input name="itemDescription{$counter+1}" type="hidden" value="{$value.desproduct}">  
+        <input name="itemAmount{$counter+1}" type="hidden" value="{$value.vltotal}">  
+        <input name="itemQuantity{$counter+1}" type="hidden" value="{$value.nrqtd}">  
+        <input name="itemWeight{$counter+1}" type="hidden" value="{$value.vlweight*1000}">  
+        {/loop}
+
+        <input name="reference" type="hidden" value="{$order.idorder}">  
+          
+        <!-- Informações de frete (opcionais) -->  
+        <input name="shippingType" type="hidden" value="1">
+        <input name="shippingAddressPostalCode" type="hidden" value="{$order.deszipcode}">  
+        <input name="shippingAddressStreet" type="hidden" value="{function="utf8_encode($order.desaddress)"}">  
+        <input name="shippingAddressNumber" type="hidden" value="{function="utf8_encode($order.desnumber)"}">  
+        <input name="shippingAddressComplement" type="hidden" value="{function="utf8_encode($order.descomplement)"}">  
+        <input name="shippingAddressDistrict" type="hidden" value="{function="utf8_encode($order.desdistrict)"}">  
+        <input name="shippingAddressCity" type="hidden" value="{function="utf8_encode($order.descity)"}">
+        <input name="shippingAddressState" type="hidden" value="{function="utf8_encode($order.desstate)"}"> 
+        <input name="shippingAddressCountry" type="hidden" value="{function="utf8_encode($order.descountry)"}">  
+  
+        <!-- Dados do comprador (opcionais) -->  
+        <input name="senderName" type="hidden" value="{function="utf8_encode($order.desperson)"}">  
+        <input name="senderAreaCode" type="hidden" value="{$phone.areaCode}">  
+        <input name="senderPhone" type="hidden" value="{$phone.number}">  
+        <input name="senderEmail" type="hidden" value="{$order.desemail}">  
+          
+</form>  
+<script type="text/javascript">
+document.forms[0].submit();
+</script>
