@@ -1,2 +1,4 @@
 # curso-completo-php-7
-Repositório com os exemplos desenvolvidos no Curso Completo de PHP 7 da Hcode, incluindo e-commerce, Banco de Dados, sessões, biblioteca GD e muito mais...
+Sejam bem-vindos!
+Esse repositório é destinado para os alunos da Hcode. Nele, é possível baixar todos os códigos desenvolvidos em nosso Curso Completo de PHP 7
+Bons estudos a todos :)
