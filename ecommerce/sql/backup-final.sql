@@ -26,6 +26,7 @@ CREATE TABLE `tb_addresses` (
   `idaddress` int(11) NOT NULL AUTO_INCREMENT,
   `idperson` int(11) NOT NULL,
   `desaddress` varchar(128) NOT NULL,
+  `desnumber` varchar(16) NOT NULL,
   `descomplement` varchar(32) DEFAULT NULL,
   `descity` varchar(32) NOT NULL,
   `desstate` varchar(32) NOT NULL,
@@ -393,6 +394,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_save`(
 pidaddress int(11), 
 pidperson int(11),
 pdesaddress varchar(128),
+pdesnumber varchar(32),
 pdescomplement varchar(32),
 pdescity varchar(32),
 pdesstate varchar(32),
@@ -410,6 +412,7 @@ BEGIN
             desaddress = pdesaddress,
             descomplement = pdescomplement,
             descity = pdescity,
+            desnumber = pdesnumber,
             desstate = pdesstate,
             descountry = pdescountry,
             deszipcode = pdeszipcode, 
@@ -418,8 +421,8 @@ BEGIN
         
     ELSE
 		
-		INSERT INTO tb_addresses (idperson, desaddress, descomplement, descity, desstate, descountry, deszipcode, desdistrict)
-        VALUES(pidperson, pdesaddress, pdescomplement, pdescity, pdesstate, pdescountry, pdeszipcode, pdesdistrict);
+		INSERT INTO tb_addresses (idperson, desaddress, descomplement, descity, desnumber, desstate, descountry, deszipcode, desdistrict)
+        VALUES(pidperson, pdesaddress, pdescomplement, pdescity, pdesnumber, pdesstate, pdescountry, pdeszipcode, pdesdistrict);
         
         SET pidaddress = LAST_INSERT_ID();
         
