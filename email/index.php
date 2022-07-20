@@ -1,12 +1,24 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 require_once("vendor/autoload.php");
 
 //Create a new PHPMailer instance
 $mail = new PHPMailer;
 
-
 //Tell PHPMailer to use SMTP
+$mail->isSMTP();
+
+$mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
 
 //Enable SMTP debugging
 // 0 = off (for production use)
@@ -18,7 +30,7 @@ $mail->SMTPDebug = 2;
 $mail->Debugoutput = 'html';
 
 //Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'smtp-mail.outlook.com';
 // use
 // $mail->Host = gethostbyname('smtp.gmail.com');
 // if your network does not support SMTP over IPv6
@@ -42,10 +54,10 @@ $mail->Password = "";
 $mail->SetFrom('', 'Curso PHP 7');
 
 //Set an alternative reply-to address
-$mail->addReplyTo('', 'First Last');
+// $mail->addReplyTo('', 'First Last');
 
 //Set who the message is to be sent to
-$mail->addAddress('suporte@hcode.com.br', 'Suporte Hcode');
+$mail->addAddress('', 'Suporte Hcode');
 
 //Set the subject line
 $mail->Subject = 'Testando a classe PHPMailer com Gmail';
